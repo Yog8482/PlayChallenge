@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_mediau">16sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="padding_normal">32dp</dimen>
+    <dimen name="material_tv_corner">24dp</dimen>
+</resources>

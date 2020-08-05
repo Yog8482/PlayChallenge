@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/orange_start</color>//Turquoise
+    <!--    <color name="colorPrimary">#42A5F5</color>-->
+    <color name="colorPrimaryDark">@color/orange_end</color>
+    <color name="colorAccent">@color/orange_end</color>
+
+
+
+    <!-- Splash screen -->
+
+    <color name="splash_top">#26A0DA</color>
+    <color name="color_url">#1F75FE</color>
+
+    <color name="splash_bottom">#1D2B64</color>
+
+    <!-- Recycle view -->
+
+    <color name="recycle_background">#F2F2F2</color>
+
+    <!-- Tabs -->
+
+    <color name="tab_article">#6078EA</color>
+    <color name="tab_users">@color/orange_end</color>
+    <color name="tab_profile">#3BB2B8</color>
+    <color name="tab_inactive">#343434</color>
+
+    <array name="tab_colors">
+        <item name="tab_article">@color/tab_article</item>
+        <item name="tab_users">@color/tab_users</item>
+        <item name="user_profile">@color/tab_profile</item>
+    </array>
+
+
+    <!-- Text Colors-->
+
+    <color name="colorSurface">#FFFFFF</color>
+
+    <color name="colorTextLastUpdated">#000</color>
+
+    <color name="colorTextDefault">#000</color>
+
+    <color name="color_toolbar_title">#000</color>
+
+    <!--Custom gradient Start & End colors -->
+
+    <color name="cyan_start">#E0F2F1</color>
+
+    <color name="cyan_end">#00E5FF</color>
+
+    <color name="orange_start">#FF9966</color>
+
+    <color name="orange_end">#FF5E62</color>
+
+    <color name="greenteal_start">#02aab0</color>
+
+    <color name="greenteal_end">#00cdac</color>
+
+    <color name="pinkcyan_start">#e55d87</color>
+
+    <color name="pinkcyan_end">#5fc3e4</color>
+
+    <!-- HTML colors-->
+
+
+    <color name="white">#ffffff</color>
+
+    <color name="snow">#fffafa</color>
+
+    <color name="honeydew">#f0fff0</color>
+
+    <color name="mintcream">#f5fffa</color>
+
+    <color name="azure">#f0ffff</color>
+
+    <color name="aliceblue">#f0f8ff</color>
+
+    <color name="ghostwhite">#f8f8ff</color>
+
+    <color name="whitesmoke">#f5f5f5</color>
+
+    <color name="seashell">#fff5ee</color>
+
+    <color name="beige">#f5f5dc</color>
+
+    <color name="oldlace">#fdf5e6</color>
+
+    <color name="floralwhite">#fffaf0</color>
+
+    <color name="ivory">#fffff0</color>
+
+    <color name="antiquewhite">#faebd7</color>
+
+    <color name="linen">#faf0e6</color>
+
+    <color name="lavenderblush">#fff0f5</color>
+
+    <color name="mistyrose">#ffe4e1</color>
+
+    <!-- Flat ui -->
+
+
+    <color name="Turquoise">#1ABC9C</color>
+
+    <color name="Emerland">#2ecc71</color>
+
+    <color name="Peterriver">#3498db</color>
+
+    <color name="Amethyst">#9b59b6</color>
+
+    <color name="Wetasphalt">#34495e</color>
+
+    <color name="greensea">#16a085</color>
+
+    <color name="nephritis">#27ae60</color>
+
+    <color name="belizehole">#2980b9</color>
+
+    <color name="wisteria">#8e44ad</color>
+
+    <color name="midnightblue">#2c3e50</color>
+
+    <color name="sunflower">#f1c40f</color>
+
+    <color name="carrot">#e67e22</color>
+
+    <color name="alizarin">#e74c3c</color>
+
+    <color name="clouds">#ecf0f1</color>
+
+    <color name="concrete">#95a5a6</color>
+
+    <color name="orange">#f39c12</color>
+
+    <color name="pumpkin">#d35400</color>
+
+    <color name="pomegranate">#c0392b</color>
+
+    <color name="silver">#bdc3c7</color>
+    <color name="gainsboro">#dcdcdc</color>
+    <color name="lightblue">#add8e6</color>
+    <color name="powderblue">#b0e0e6</color>
+</resources>

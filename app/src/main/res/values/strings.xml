@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PlayApplication</string>
+    <string name="title_ph">Title</string>
+    <string name="by_abc">by abc</string>
+    <string name="score">1456</string>
+    <string name="no_data">No Data</string>
+    <string name="login">Login</string>
+    <string name="password_ph">Password</string>
+    <string name="username_ph">Email</string>
+    <string name="email_error">Invalid Email</string>
+    <string name="password_error">Password should be in between 8 to 16 chars</string>
+</resources>

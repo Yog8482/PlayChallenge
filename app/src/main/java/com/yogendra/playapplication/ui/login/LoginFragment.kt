@@ -31,7 +31,7 @@ class LoginFragment : Fragment() {
                 false
             )
         )
-        viewModel = LoginViewmodel_Factory(requireActivity()).create(LoginViewModel::class.java)
+        viewModel = LoginViewmodel_Factory().create(LoginViewModel::class.java)
 //        binding.loginmodel = viewModel
 
 

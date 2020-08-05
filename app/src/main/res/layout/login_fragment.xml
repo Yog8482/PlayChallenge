@@ -6,7 +6,7 @@
     <data>
         <variable
             name="logindetailsstate"
-            type="com.yogendra.playapplication.ui.login.validation.LoginInputState" />
+            type="com.yogendra.playapplication.ui.login.validation.LoginInputDataWithState" />
 
 <!--        <variable-->
 <!--            name="loginmodel"-->
@@ -63,8 +63,8 @@
                     android:ems="2"
                     android:hint="@string/username_ph"
                     android:inputType="textEmailAddress"
-                    android:padding="10dp"
-                    android:paddingStart="@dimen/padding_normal"
+                    android:padding="@dimen/padding_normal"
+                    android:paddingStart="@dimen/padding_start"
                    />
 <!--                app:textChangedListener="@{loginmodel.getTextWatcher}"-->
 
@@ -82,7 +82,7 @@
                 app:errorEnabled="true"
                 app:boxCornerRadiusTopEnd="@dimen/material_tv_corner"
                 app:boxCornerRadiusBottomStart="@dimen/material_tv_corner"
-                app:errorText="@{logindetailsstate.passwordError}"
+                app:errorText="@{logindetailsstate.passError}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,8 +98,8 @@
                     android:hint="@string/password_ph"
                     android:inputType="textPassword"
                     android:maxLength="16"
-                    android:padding="10dp"
-                    android:paddingStart="@dimen/padding_normal"
+                    android:padding="@dimen/padding_normal"
+                    android:paddingStart="@dimen/padding_start"
                  />
 <!--                app:textChangedListener="@{loginmodel.getPasswordTextWatcher}"-->
             </com.google.android.material.textfield.TextInputLayout>

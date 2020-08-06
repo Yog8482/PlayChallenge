@@ -1,18 +1,21 @@
 package com.yogendra.playapplication.data
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.yogendra.socialmediamvvm.utils.DATE_FORMAT_20
 import com.yogendra.socialmediamvvm.utils.formatDateFromDateString
 import retrofit2.http.Field
 import java.text.SimpleDateFormat
 import java.util.*
 
-@Entity(tableName = "Details", primaryKeys = ["id"])
+@Entity(tableName = "details", primaryKeys = ["id"])
+//Second-Response Object for each key
 data class Itemdetail(
     val id: String,
     val descendants: String,
     val by: String,
-    val kids: List<Long>? = emptyList(),
+    val kids: List<String>? = emptyList(),
     val score: String,
     val time: String,
     val type: String,
@@ -35,10 +38,3 @@ data class Itemdetail(
         }
     }
 }
-
-data class Allkeys(
-    @Field("")
-    val keys: List<Long>? = emptyList(),
-    var next_key: Long? = 0
-
-)

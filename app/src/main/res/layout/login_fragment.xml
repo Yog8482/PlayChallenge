@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="logindetailsstate"
             type="com.yogendra.playapplication.ui.login.validation.LoginInputDataWithState" />
 
-<!--        <variable-->
-<!--            name="loginmodel"-->
-<!--            type="com.yogendra.playapplication.ui.login.LoginViewModel" />-->
+        <!--        <variable-->
+        <!--            name="loginmodel"-->
+        <!--            type="com.yogendra.playapplication.ui.login.LoginViewModel" />-->
     </data>
 
     <ScrollView
@@ -22,6 +23,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:context=".ui.login.LoginFragment">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/progressbar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/colorPrimaryDark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loading" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animationView"
@@ -46,9 +60,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                app:errorEnabled="true"
-                app:boxCornerRadiusTopEnd="@dimen/material_tv_corner"
                 app:boxCornerRadiusBottomStart="@dimen/material_tv_corner"
+                app:boxCornerRadiusTopEnd="@dimen/material_tv_corner"
+                app:errorEnabled="true"
                 app:errorText="@{logindetailsstate.emailError}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -64,9 +78,8 @@
                     android:hint="@string/username_ph"
                     android:inputType="textEmailAddress"
                     android:padding="@dimen/padding_normal"
-                    android:paddingStart="@dimen/padding_start"
-                   />
-<!--                app:textChangedListener="@{loginmodel.getTextWatcher}"-->
+                    android:paddingStart="@dimen/padding_start" />
+                <!--                app:textChangedListener="@{loginmodel.getTextWatcher}"-->
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,10 +92,11 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                app:errorEnabled="true"
-                app:boxCornerRadiusTopEnd="@dimen/material_tv_corner"
                 app:boxCornerRadiusBottomStart="@dimen/material_tv_corner"
+                app:boxCornerRadiusTopEnd="@dimen/material_tv_corner"
+                app:errorEnabled="true"
                 app:errorText="@{logindetailsstate.passError}"
+                app:passwordToggleEnabled="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -99,9 +113,8 @@
                     android:inputType="textPassword"
                     android:maxLength="16"
                     android:padding="@dimen/padding_normal"
-                    android:paddingStart="@dimen/padding_start"
-                 />
-<!--                app:textChangedListener="@{loginmodel.getPasswordTextWatcher}"-->
+                    android:paddingStart="@dimen/padding_start" />
+                <!--                app:textChangedListener="@{loginmodel.getPasswordTextWatcher}"-->
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton

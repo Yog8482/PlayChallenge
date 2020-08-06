@@ -39,7 +39,9 @@ android {
         freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
     }
 }
-
+ext {
+    dagger_version = '2.28.1'
+}
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
@@ -49,6 +51,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     kapt deps.room.compiler
     kapt deps.glide.compiler
+
 
     implementation deps.constraint_layout
     implementation deps.app_compat
@@ -66,7 +69,20 @@ dependencies {
     implementation deps.retrofit.gson
     implementation deps.okhttp_logging_interceptor
     implementation deps.glide.runtime
+
+
     implementation deps.lottie
+    implementation deps.okhttp_logging_interceptor
+    implementation deps.mock_web_server
+
+    //Dagger stuff
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kaptTest "com.google.dagger:dagger-compiler:$dagger_version"
+
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation deps.atsl.core

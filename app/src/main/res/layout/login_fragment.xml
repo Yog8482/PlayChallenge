@@ -57,9 +57,9 @@
 
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="32dp"
                 app:boxCornerRadiusBottomStart="@dimen/material_tv_corner"
                 app:boxCornerRadiusTopEnd="@dimen/material_tv_corner"
                 app:errorEnabled="true"
@@ -89,19 +89,17 @@
 
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
                 app:boxCornerRadiusBottomStart="@dimen/material_tv_corner"
                 app:boxCornerRadiusTopEnd="@dimen/material_tv_corner"
                 app:errorEnabled="true"
                 app:errorText="@{logindetailsstate.passError}"
-                app:passwordToggleEnabled="true"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/username_ip"
+                app:layout_constraintStart_toStartOf="@+id/username_ip"
                 app:layout_constraintTop_toBottomOf="@+id/username_ip"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintVertical_bias="0.0"
+                app:passwordToggleEnabled="true">
 
                 <EditText
                     android:id="@+id/password_ev"

@@ -5,6 +5,6 @@
     <dimen name="text_size_mediau">16sp</dimen>
     <dimen name="text_size_small">12sp</dimen>
     <dimen name="padding_normal">16dp</dimen>
-    <dimen name="padding_start">32dp</dimen>
+    <dimen name="padding_start">20dp</dimen>
     <dimen name="material_tv_corner">24dp</dimen>
 </resources>

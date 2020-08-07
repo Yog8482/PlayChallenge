@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PlayApplication</string>
     <string name="title_ph">Title</string>
-    <string name="by_abc">by abc</string>
+    <string name="by_abc">by %s</string>
     <string name="score">1456</string>
     <string name="no_data">No Data</string>
     <string name="login">Login</string>

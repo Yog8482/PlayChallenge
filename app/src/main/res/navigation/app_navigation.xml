@@ -12,7 +12,11 @@
         tools:layout="@layout/login_fragment">
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -21,15 +25,26 @@
         android:label="Home">
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.yogendra.playapplication.ui.details.DetailsFragment"
         android:label="{title}"
-        tools:layout="@layout/details_fragment" />
+        tools:layout="@layout/details_fragment">
         <argument
             android:name="title"
-            app:argType="string" android:defaultValue="Details" />
+            app:argType="string"
+            app:nullable="true" android:defaultValue="Details"/>
+
+        <argument
+            android:name="web_url"
+            app:argType="string" />
+    </fragment>
+
 
 </navigation>

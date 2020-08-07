@@ -30,23 +30,23 @@ interface LoginApi {
     suspend fun userLoginfail400(
     ): Response<LoginResponseFailure>
 
-    companion object {
-        operator fun invoke(
-            networkConnectionInterceptor: NetworkConnectionInterceptor,
-            logging_interceptor: HttpLoggingInterceptor
-        ): LoginApi {
-
-            val okkHttpclient = OkHttpClient.Builder()
-                .addInterceptor(networkConnectionInterceptor)
-                .addInterceptor(logging_interceptor)
-                .build()
-
-            return Retrofit.Builder()
-                .client(okkHttpclient)
-                .baseUrl("https://256b758e-ed3e-400c-8ece-10dc78851f7a.mock.pstmn.io/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(LoginApi::class.java)
-        }
-    }
+//    companion object {
+//        operator fun invoke(
+//            networkConnectionInterceptor: NetworkConnectionInterceptor,
+//            logging_interceptor: HttpLoggingInterceptor
+//        ): LoginApi {
+//
+//            val okkHttpclient = OkHttpClient.Builder()
+//                .addInterceptor(networkConnectionInterceptor)
+//                .addInterceptor(logging_interceptor)
+//                .build()
+//
+//            return Retrofit.Builder()
+//                .client(okkHttpclient)
+//                .baseUrl("https://256b758e-ed3e-400c-8ece-10dc78851f7a.mock.pstmn.io/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build()
+//                .create(LoginApi::class.java)
+//        }
+//    }
 }

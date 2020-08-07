@@ -1,9 +1,9 @@
 package com.yogendra.playapplication
 
 val LOGIN_URL = "https://256b758e-ed3e-400c-8ece-10dc78851f7a.mock.pstmn.io/";
-val DETAILS_URL = "https://hacker-news.firebaseio.com/v0/";
-val URL_ENDPOINT_1 = "topstories.json";
-val URL_ENDPOINT_2 = "item/{$}.json";
+const val DETAILS_URL = "https://hacker-news.firebaseio.com/v0/";
+const val URL_ENDPOINT_1 = "topstories.json"
+const val URL_ENDPOINT_2 = "item/{key}.json"
 
 val DATABASE_NAME = "play-db"
 

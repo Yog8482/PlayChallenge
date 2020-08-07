@@ -22,7 +22,7 @@ class NetworkConnectionInterceptor @Inject constructor(
         return chain.proceed(chain.request())
     }
 
-    private fun isInternetAvailable(): Boolean {
+     fun isInternetAvailable(): Boolean {
         var result = false
         val connectivityManager =
             applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?

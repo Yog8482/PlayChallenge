@@ -70,9 +70,9 @@ class LoginFragment : Fragment(), Injectable {
             when (status) {
                 ProgressStatus.LOADING.toString() -> binding.progressbar.visibility = View.VISIBLE
 
-                ProgressStatus.COMPLTED.toString() ->{
-                    binding.usernameEv.text=null
-                    binding.passwordEv.text=null
+                ProgressStatus.COMPLTED.toString() -> {
+                    binding.usernameEv.text = null
+                    binding.passwordEv.text = null
                     binding.progressbar.visibility = View.GONE
                 }
 
@@ -90,9 +90,8 @@ class LoginFragment : Fragment(), Injectable {
                 else -> {
                     binding.progressbar.visibility = View.GONE
                     if (status.contains("Login Success")) {
-                        viewModel.invalidateDetails()
 
-                        navigateToDetails(binding.root)
+                        viewModel.downloadTopStories()
                     }
                     MultilineSnackbar(
                         binding.root,
@@ -104,9 +103,52 @@ class LoginFragment : Fragment(), Injectable {
 
         })
 
+
+
+        viewModel.downloadDataStatus().observe(viewLifecycleOwner, Observer { status ->
+            status?.let {
+                when (status) {
+                    ProgressStatus.LOADING.toString() -> binding.progressbar.visibility =
+                        View.VISIBLE
+
+                    ProgressStatus.COMPLTED.toString() -> {
+                        MultilineSnackbar(
+                            binding.root,
+                            "Top stories Downloaded"
+                        ).show()
+                        navigateToDetails(binding.root)
+
+                    }
+
+                    ProgressStatus.ERROR.toString() -> binding.progressbar.visibility = View.GONE
+
+                    ProgressStatus.NO_NETWORK.toString() -> {
+                        binding.progressbar.visibility = View.GONE
+
+                        MultilineSnackbar(
+                            binding.root,
+                            NoInternetException().message.toString()
+                        ).show()
+                    }
+
+                    else -> {
+                        binding.progressbar.visibility = View.GONE
+                        MultilineSnackbar(
+                            binding.root,
+                            status.toString()
+                        ).show()
+                    }
+
+                }
+            }
+
+        })
+
     }
 
     fun navigateToDetails(view: View) {
+        viewModel.invalidateLoginPage()
+
         val directions =
             LoginFragmentDirections.actionLoginFragmentToHomeFragment(
             )

@@ -8,6 +8,7 @@ import com.yogendra.playapplication.MOCK_EMAIL
 import com.yogendra.playapplication.MOCK_PASSWORD
 import com.yogendra.playapplication.data.requests.LoginRequest
 import com.yogendra.playapplication.di.CoroutineScopeIO
+import com.yogendra.playapplication.repository.KeysRepository
 import com.yogendra.playapplication.repository.LoginRepository
 import com.yogendra.playapplication.ui.login.validation.LoginInputDataWithState
 import kotlinx.coroutines.CoroutineScope
@@ -15,6 +16,7 @@ import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     private val repository: LoginRepository,
+    private val keysrepository: KeysRepository,
     @CoroutineScopeIO private val ioCoroutineScope: CoroutineScope
 ) : ViewModel() {
 
@@ -27,9 +29,18 @@ class LoginViewModel @Inject constructor(
         _loginDetailsState.setValue(LoginInputDataWithState(email, password))
     }
 
-    fun invalidateDetails() {
+    fun invalidateLoginPage() {
         _loginDetailsState.postValue(null)
         repository.invalidateProgressStatus()
+        keysrepository.keyDownloadStatus.postValue(null)
+    }
+
+    fun downloadTopStories() {
+        keysrepository.downloadTopstories(scope = ioCoroutineScope)
+    }
+
+    fun downloadDataStatus(): LiveData<String> {
+        return keysrepository.keyDownloadStatus
     }
 
     fun getProgressStatus(): LiveData<String> {

@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <data>-->
-<!--        <import type="com.yogendra.playapplication.data.itemdetail"/>-->
+    <data>
+        <import type="com.yogendra.playapplication.data.Itemdetail"/>
 
-<!--        <variable-->
-<!--            name="userClickListener"-->
-<!--            type="android.view.View.OnClickListener" />-->
+        <variable
+            name="userClickListener"
+            type="android.view.View.OnClickListener" />
 
-<!--        <variable-->
-<!--            name="itemModel"-->
-<!--            type="com.yogendra.playapplication.data.itemdetail" />-->
-<!--    </data>-->
+        <variable
+            name="itemModel"
+            type="com.yogendra.playapplication.data.Itemdetail" />
+    </data>
 
 
     <com.google.android.material.card.MaterialCardView
@@ -25,6 +25,7 @@
         app:cardCornerRadius="6dp"
         app:contentPadding="16dp"
         app:cardElevation="12dp"
+        android:onClick="@{userClickListener}"
         android:backgroundTint="@color/clouds"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:hint="@string/title_ph"
+                android:text="@{itemModel.title}"
                 android:textSize="@dimen/text_size_large"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout"
@@ -56,6 +58,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:hint="@string/by_abc"
+                android:text="@{String.format(@string/by_abc, itemModel.by)}"
+
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/title_tv"
@@ -84,7 +88,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:gravity="center"
                     android:hint="@string/score"
+                    android:text="@{itemModel.score}"
+
                     android:textSize="@dimen/text_size_small" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

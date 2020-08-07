@@ -3,6 +3,8 @@ package com.yogendra.playapplication.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.yogendra.playapplication.ui.details.DetailsViewModel
+import com.yogendra.playapplication.ui.home.HomeViewModel
 import com.yogendra.playapplication.ui.login.LoginViewModel
 import dagger.Binds
 import dagger.Module
@@ -15,16 +17,16 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     abstract fun bindLoginViewModel(viewModel: LoginViewModel): ViewModel
-//
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(UsersViewModel::class)
-//    abstract fun bindUsersViewModel(viewModel: UsersViewModel): ViewModel
-//
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(ProfileViewModel::class)
-//    abstract fun bindProfileViewModel(viewModel: ProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeViewModel::class)
+    abstract fun bindHomeViewModel(viewModel: HomeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailsViewModel::class)
+    abstract fun bindDetailsViewModel(viewModel: DetailsViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

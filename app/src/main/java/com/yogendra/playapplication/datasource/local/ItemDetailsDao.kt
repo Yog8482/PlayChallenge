@@ -19,9 +19,12 @@ interface ItemDetailsDao{
     fun getDetails(): LiveData<List<Itemdetail>>
 
     @Query("SELECT * FROM details WHERE id= :details_id")
-    fun getArticleUser(details_id: String): LiveData<Itemdetail>
+    fun getDetailsById(details_id: String): LiveData<Itemdetail>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(items: List<Itemdetail>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertItem(items: Itemdetail)
 
 }

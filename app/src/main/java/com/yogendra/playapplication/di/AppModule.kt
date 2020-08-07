@@ -3,9 +3,13 @@ package com.yogendra.playapplication.di
 import android.app.Application
 import com.google.gson.Gson
 import com.yogendra.playapplication.BuildConfig
+import com.yogendra.playapplication.DETAILS_URL
 import com.yogendra.playapplication.LOGIN_URL
+import com.yogendra.playapplication.apis.FetchDataService
 import com.yogendra.playapplication.apis.LoginApi
 import com.yogendra.playapplication.database.AppDatabase
+import com.yogendra.playapplication.datasource.remote.ItemDetailsRemoteDataSource
+import com.yogendra.playapplication.datasource.remote.KeysRemoteDataSource
 import com.yogendra.playapplication.datasource.remote.LoginRemoteDataSource
 import com.yogendra.playapplication.interceptor.NetworkConnectionInterceptor
 import dagger.Module
@@ -54,15 +58,27 @@ class AppModule {
 
     @Singleton
     @Provides
+    fun provideFetchDataService(
+        okhttpClient: OkHttpClient,
+        converterFactory: GsonConverterFactory
+    ) = provideFetchService(okhttpClient, converterFactory, FetchDataService::class.java)
+
+    @Singleton
+    @Provides
     fun provideLoginRemoteDataSource(loginApi: LoginApi) =
         LoginRemoteDataSource(loginApi)
 
 
-//    @Singleton
-//    @Provides
-//    fun provideUsersRemoteDataSource(fetchDataService: FetchDataService) =
-//        UsersRemoteDataSource(fetchDataService)
-//
+    @Singleton
+    @Provides
+    fun provideDetailsRemoteDataSource(fetchDataService: FetchDataService) =
+        ItemDetailsRemoteDataSource(fetchDataService)
+
+    @Singleton
+    @Provides
+    fun provideKeysRemoteDataSource(fetchDataService: FetchDataService) =
+        KeysRemoteDataSource(fetchDataService)
+
 
     @Singleton
     @Provides
@@ -87,7 +103,7 @@ class AppModule {
     fun provideCoroutineScopeIO() = CoroutineScope(Dispatchers.IO)
 
 
-    private fun createRetrofit(
+    private fun createLoginRetrofit(
         okhttpClient: OkHttpClient,
         converterFactory: GsonConverterFactory
     ): Retrofit {
@@ -102,6 +118,24 @@ class AppModule {
         okhttpClient: OkHttpClient,
         converterFactory: GsonConverterFactory, service: Class<T>
     ): T {
-        return createRetrofit(okhttpClient, converterFactory).create(service)
+        return createLoginRetrofit(okhttpClient, converterFactory).create(service)
     }
+}
+
+private fun createFetchRetrofit(
+    okhttpClient: OkHttpClient,
+    converterFactory: GsonConverterFactory
+): Retrofit {
+    return Retrofit.Builder()
+        .baseUrl(DETAILS_URL)
+        .client(okhttpClient)
+        .addConverterFactory(converterFactory)
+        .build()
+}
+
+private fun <T> provideFetchService(
+    okhttpClient: OkHttpClient,
+    converterFactory: GsonConverterFactory, service: Class<T>
+): T {
+    return createFetchRetrofit(okhttpClient, converterFactory).create(service)
 }

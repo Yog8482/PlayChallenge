@@ -1,13 +1,13 @@
 package com.yogendra.playapplication.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.yogendra.playapplication.ProgressStatus
 import com.yogendra.playapplication.adapter.HomeListAdapter
 import com.yogendra.playapplication.databinding.HomeFragmentListBinding
@@ -35,12 +35,14 @@ class HomeFragment : Fragment(), Injectable {
         binding = HomeFragmentListBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
+        viewModel.loadData()
+
         binding.list.adapter = adapter
         subscribeUi(adapter)
 
 
         binding.swiperefresh.setOnRefreshListener {
-//            viewModel.refreshData()
+            viewModel.loadData()
             binding.swiperefresh.isRefreshing = false
 
         }
@@ -52,12 +54,12 @@ class HomeFragment : Fragment(), Injectable {
     private fun subscribeUi(adapter: HomeListAdapter) {
         binding.swiperefresh.isRefreshing = true
 
-        viewModel.articles.observe(viewLifecycleOwner) { result ->
+        viewModel.articles.observe(viewLifecycleOwner, Observer { result ->
             binding.swiperefresh.isRefreshing = false
-
+            Log.i("HomeModel", "subscribeUi:$result")
             adapter.submitList(result)
-            binding.hasArticles = result!=null && result.isNotEmpty()
-        }
+            binding.hasArticles = result.isNotEmpty()
+        })
 
         viewModel.progressStatus.observe(viewLifecycleOwner, Observer { status ->
 

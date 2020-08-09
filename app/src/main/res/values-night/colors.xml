@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primaryColor">@color/cyan_primary</color>
+
+    <color name="primaryLightColor">@color/cyan_light</color>
+
+    <color name="primaryDarkColor">@color/cyan_dark</color>
+
+    <color name="secondaryColor">@color/cyan_sec</color>
+
+    <color name="secondaryLightColor">@color/cyan_sec_light</color>
+
+    <color name="secondaryDarkColor">@color/cyan_dark</color>
+
+    <color name="primaryTextColor">@color/white</color>
+
+    <color name="secondaryTextColor">@color/cyan_theme_text</color>
+
+    <color name="colorOnBackground">#000000</color>
+</resources>

@@ -71,9 +71,11 @@ class LoginFragment : Fragment(), Injectable {
                 ProgressStatus.LOADING.toString() -> binding.progressbar.visibility = View.VISIBLE
 
                 ProgressStatus.COMPLTED.toString() -> {
-                    binding.usernameEv.text = null
-                    binding.passwordEv.text = null
+//                    binding.usernameEv.text = null
+//                    binding.passwordEv.text = null
                     binding.progressbar.visibility = View.GONE
+
+
                 }
 
                 ProgressStatus.ERROR.toString() -> binding.progressbar.visibility = View.GONE

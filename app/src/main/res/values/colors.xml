@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/orange_start</color>//Turquoise
-    <!--    <color name="colorPrimary">#42A5F5</color>-->
-    <color name="colorPrimaryDark">@color/orange_end</color>
-    <color name="colorAccent">@color/orange_end</color>
+    <color name="primaryColor">@color/cyan_primary</color>
 
+    <color name="primaryLightColor">@color/cyan_light</color>
+
+    <color name="primaryDarkColor">@color/cyan_dark</color>
+
+    <color name="secondaryColor">@color/cyan_sec</color>
+
+    <color name="secondaryLightColor">@color/cyan_sec_light</color>
+
+    <color name="secondaryDarkColor">@color/cyan_dark</color>
+
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">@color/cyan_theme_text</color>
+
+
+    <!--  Theme Cyan-->
+    <color name="cyan_primary">#26c6da</color>
+    <color name="cyan_sec">#4dd0e1</color>
+    <color name="cyan_light">#6ff9ff</color>
+    <color name="cyan_sec_light">#88ffff</color>
+    <color name="cyan_dark">#0095a8</color>
+    <color name="cyan_sec_dark">#009faf</color>
+    <color name="cyan_theme_text">#fafafa</color>
 
 
     <!-- Splash screen -->
@@ -41,6 +60,7 @@
     <color name="colorTextDefault">#000</color>
 
     <color name="color_toolbar_title">#000</color>
+    <color name="colorOnBackground">#ffffff</color>
 
     <!--Custom gradient Start & End colors -->
 

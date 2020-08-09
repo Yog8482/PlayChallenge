@@ -8,9 +8,7 @@ import com.yogendra.playapplication.data.Itemdetail
 import com.yogendra.playapplication.data.Result
 import com.yogendra.playapplication.datasource.local.AllKeysDao
 import com.yogendra.playapplication.datasource.local.ItemDetailsDao
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class ItemDetailsPagedDataSource @Inject constructor(
@@ -29,26 +27,38 @@ class ItemDetailsPagedDataSource @Inject constructor(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Itemdetail>) {
         val page = params.key
+
+//        scope.launch {
         fetchData(params.requestedLoadSize) {
             callback.onResult(it, page + 1)
+//            }
         }
+
+
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Itemdetail>) {
         val page = params.key
+
+//        scope.launch {
         fetchData(params.requestedLoadSize) {
             callback.onResult(it, page - 1)
+//            }
         }
+
+
     }
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, Itemdetail>
     ) {
-
+//        scope.launch {
         fetchData(params.requestedLoadSize) {
-            callback.onResult(it, null, keysdao.getNextPageStartkey()?.toInt())
+            callback.onResult(it, null, 2)//keysdao.getNextPageStartkey()?.toInt()
+//            }
         }
+
     }
 
 
@@ -57,40 +67,64 @@ class ItemDetailsPagedDataSource @Inject constructor(
 
         progressLiveStatus.postValue(ProgressStatus.LOADING.toString())
 
-        val newItems: MutableList<Itemdetail> = mutableListOf<Itemdetail>()
         val listofkeys = keysdao.getNextBatchOfKeys(pagesize, "$initialkey")
+        val response: MutableList<Deferred<Result<Itemdetail>>> = mutableListOf()
+
         //Fetch details for each key and after succcess, update next page start to that key_value row id
         listofkeys.isNotEmpty().let {
             listofkeys.forEachIndexed { index, allkeys ->
-                var ispageEnd = false
-                if (index == listofkeys.size - 1)
-                    ispageEnd = true
-
                 val key = allkeys.key_value
+                response.add(scope.async {
+                    Log.i("RequestDeferrred", "deferred Request added for key:$key")
+                    dataSource.fetchDetailsForKey(key)
 
-                scope.launch(getJobErrorHandler()) {
+                })
 
-                    val response = dataSource.fetchDetailsForKey(key)
-                    if (response.status == Result.Status.SUCCESS) {
-                        val results = response.data!!
-                        detailsdao.insertItem(results)
-                        newItems.add(results)
-                        val rowid = keysdao.getRowidBykeyvalue(key)
-                        keysdao.updateNextPageAllkeys("$rowid")
-                        if (ispageEnd) {
-                            progressLiveStatus.postValue(ProgressStatus.COMPLTED.toString())
-                            callback(newItems)
+            }
 
-                        }
+            val newItems: MutableList<Itemdetail> = mutableListOf()
 
-                    } else if (response.status == Result.Status.ERROR) {
-                        postError(response.message!!)
+            scope.launch(getJobErrorHandler()) {
+                response.forEachIndexed { index, deferred ->
+                    Log.i("RequestDeferrred", "deferred input index:$index")
+
+                    processEachResponse(deferred.await())?.let { it1 ->
+                        newItems.add(it1)
+                        Log.i("RequestDeferrred", "deferred response added for key:${it1.id}")
+
                     }
-
                 }
+
+                Log.i("RequestDeferrred", "deferred response final list:$newItems")
+                callback(newItems)
+                progressLiveStatus.postValue(ProgressStatus.COMPLTED.toString())
             }
 
         }
+
+        listofkeys.isEmpty().let {
+            progressLiveStatus.postValue("No stories found to download details")
+        }
+    }
+
+
+    suspend fun processEachResponse(vararg responseObject: Result<Itemdetail>): Itemdetail? {
+
+        responseObject.forEach { response ->
+            if (response.status == Result.Status.SUCCESS) {
+                response.data?.let { results ->
+                    detailsdao.insertItem(results)
+                    val rowid = keysdao.getRowidBykeyvalue(results.id)
+                    keysdao.updateNextPageAllkeys("$rowid")
+                    return results
+                }
+
+            } else if (response.status == Result.Status.ERROR) {
+                postError(response.message!!)
+            }
+        }
+
+        return null
     }
 
     private fun getJobErrorHandler() = CoroutineExceptionHandler { _, e ->
@@ -100,7 +134,7 @@ class ItemDetailsPagedDataSource @Inject constructor(
     private fun postError(message: String) {
         Log.e("ItemDetailsPagedDS", "An error happened: $message")
         // TODO network error handling
-        if (message.contains("Unable to resolve host")) {
+        if (message.contains("Unable to connect host")) {
             progressLiveStatus.postValue(ProgressStatus.NO_NETWORK.toString())
         } else
             progressLiveStatus.postValue(ProgressStatus.ERROR.toString())

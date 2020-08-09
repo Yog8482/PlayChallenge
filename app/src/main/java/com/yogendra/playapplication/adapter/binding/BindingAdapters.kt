@@ -28,8 +28,8 @@ import com.google.android.material.textfield.TextInputLayout
  */
 
 @BindingAdapter("visibleGone")
-fun showHide(view: View, show: Boolean) {
-    view.visibility = if (show) View.VISIBLE else View.GONE
+fun showHide(view: View, hide: Boolean) {
+    view.visibility = if (hide) View.GONE else View.VISIBLE
 }
 
 

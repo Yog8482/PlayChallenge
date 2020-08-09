@@ -13,7 +13,7 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swiperefresh"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,6 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list"
-                android:name="com.yogendra.playapplication.ui.home.ItemFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="LinearLayoutManager"
@@ -32,7 +31,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:visibleGone="@{!hasArticles}"
-                tools:context=".ui.home.ItemFragment"
                 tools:listitem="@layout/home_fragment_list_item" />
 
             <TextView
@@ -41,7 +39,7 @@
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:text="@string/no_data"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/secondaryDarkColor"
 
                 android:textSize="@dimen/text_size_large"
                 app:layout_constraintBottom_toBottomOf="parent"

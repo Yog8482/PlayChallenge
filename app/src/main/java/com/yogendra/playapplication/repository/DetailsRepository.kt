@@ -5,15 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.yogendra.playapplication.ProgressStatus
 import com.yogendra.playapplication.data.Itemdetail
-import com.yogendra.playapplication.data.Result
 import com.yogendra.playapplication.datasource.ItemDetailsPageDataSourceFactory
 import com.yogendra.playapplication.datasource.local.AllKeysDao
 import com.yogendra.playapplication.datasource.local.ItemDetailsDao
 import com.yogendra.playapplication.datasource.remote.ItemDetailsPagedDataSource
 import com.yogendra.playapplication.datasource.remote.ItemDetailsRemoteDataSource
-import com.yogendra.playapplication.datasource.remote.KeysRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -21,13 +18,10 @@ import javax.inject.Singleton
 @Singleton
 class DetailsRepository @Inject constructor(
     private val remoteDataSource: ItemDetailsRemoteDataSource,
-    private val keysDataSource: KeysRemoteDataSource,
     private val keysdao: AllKeysDao,
     private val detailsdao: ItemDetailsDao
 ) {
     var progressLoadStatus: LiveData<String> = MutableLiveData()
-
-
 
     fun observePagedSets(connectivityAvailable: Boolean, coroutineScope: CoroutineScope) =
         if (connectivityAvailable) observeRemotePagedSets(coroutineScope)

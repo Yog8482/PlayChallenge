@@ -11,6 +11,7 @@ val DATABASE_NAME = "play-db"
 //val INVALID_PASSWORD_ERROR = "Password must be at-least 8 chars long or at max 16"
 val MOCK_EMAIL = "test@worldofplay.in"
 val MOCK_PASSWORD = "Worldofplay@2020"
+val SHARED_PREFS_NAME = "com.play.application_preferences"
 
 
 enum class ProgressStatus {

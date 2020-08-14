@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yogendra.playapplication.data.Itemdetail
 import com.yogendra.playapplication.databinding.HomeFragmentListItemBinding
 import com.yogendra.playapplication.ui.home.HomeFragmentDirections
+import com.yogendra.socialmediamvvm.utils.ui_components.MultilineSnackbar
 
 class HomeListAdapter :
     PagedListAdapter<Itemdetail, HomeListAdapter.ViewHolder>(
         ArticlesDiffCallback()
     ) {
     private lateinit var recyclerView: RecyclerView
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -46,13 +46,16 @@ class HomeListAdapter :
 
                 binding.userClickListener = View.OnClickListener { v ->
 
-                item.url?.let {
+                    item.url?.let {
 
-                    navigateToWebScreen(
-                        view = v,
-                        web_link = item.url, title = item.title
-                    )
-                }
+                        navigateToWebScreen(
+                            view = v,
+                            web_link = item.url, title = item.title
+                        )
+                    }
+                    if (item.url == null || item.url.length < 1) {
+                        MultilineSnackbar(binding.root, "No url found").show()
+                    }
 
                 }
                 executePendingBindings()
@@ -66,7 +69,7 @@ class HomeListAdapter :
 
 fun navigateToWebScreen(view: View, web_link: String, title: String?) {
     val directions =
-        HomeFragmentDirections.actionHomeFragmentToDetailsFragment(title,web_link)
+        HomeFragmentDirections.actionHomeFragmentToDetailsFragment(title, web_link)
 
     view.findNavController().navigate(
         directions

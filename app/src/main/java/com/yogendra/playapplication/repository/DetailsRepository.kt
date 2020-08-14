@@ -24,8 +24,10 @@ class DetailsRepository @Inject constructor(
     var progressLoadStatus: LiveData<String> = MutableLiveData()
 
     fun observePagedSets(connectivityAvailable: Boolean, coroutineScope: CoroutineScope) =
-        if (connectivityAvailable) observeRemotePagedSets(coroutineScope)
-        else observeLocalPagedSets()
+        if (connectivityAvailable) {
+            observeRemotePagedSets(coroutineScope)
+
+        } else observeLocalPagedSets()
 
     private fun observeLocalPagedSets(): LiveData<PagedList<Itemdetail>> {
         val dataSourceFactory =

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="primaryColor">@color/cyan_primary</color>
+    <color name="primaryColor">#424242</color>
 
-    <color name="primaryLightColor">@color/cyan_light</color>
+    <color name="primaryLightColor">#6d6d6d</color>
 
-    <color name="primaryDarkColor">@color/cyan_dark</color>
+    <color name="primaryDarkColor">#1b1b1b</color>
 
-    <color name="secondaryColor">@color/cyan_sec</color>
+    <color name="secondaryColor">#26c6da</color>
 
-    <color name="secondaryLightColor">@color/cyan_sec_light</color>
+    <color name="secondaryLightColor">#6ff9ff</color>
 
-    <color name="secondaryDarkColor">@color/cyan_dark</color>
+    <color name="secondaryDarkColor">#0095a8</color>
 
-    <color name="primaryTextColor">@color/white</color>
+    <color name="primaryTextColor">#0097a7</color>
 
-    <color name="secondaryTextColor">@color/cyan_theme_text</color>
+    <color name="secondaryTextColor">#fafafa</color>
 
-    <color name="colorOnBackground">#000000</color>
+    <color name="cardSubTextColor">@color/concrete</color>
+
 </resources>

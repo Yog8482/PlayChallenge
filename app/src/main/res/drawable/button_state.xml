@@ -5,12 +5,12 @@
     <item android:state_pressed="true" >
         <shape>
             <gradient
-                android:startColor="@color/primaryColor"
-                android:endColor="@color/primaryDarkColor"
+                android:startColor="@color/cyan_primary"
+                android:endColor="@color/cyan_dark"
                 android:angle="270" />
             <solid
                 android:width="3dp"
-                android:color="@color/primaryDarkColor" />
+                android:color="@color/cyan_dark" />
 
         </shape>
     </item>
@@ -19,7 +19,7 @@
         <shape>
             <solid
                 android:width="3dp"
-                android:color="@color/primaryDarkColor" />
+                android:color="@color/cyan_dark" />
 
         </shape>
     </item>

@@ -12,8 +12,9 @@
 
     <color name="secondaryDarkColor">@color/cyan_dark</color>
 
-    <color name="primaryTextColor">#000000</color>
+    <color name="primaryTextColor">@color/Wetasphalt</color>
     <color name="secondaryTextColor">@color/cyan_theme_text</color>
+    <color name="cardSubTextColor">@color/concrete</color>
 
 
     <!--  Theme Cyan-->
@@ -36,7 +37,15 @@
     <!-- Recycle view -->
 
     <color name="recycle_background">#F2F2F2</color>
+    <!-- Text Colors-->
 
+    <color name="colorSurface">#FFFFFF</color>
+
+    <color name="colorTextLastUpdated">#000</color>
+
+    <color name="colorTextDefault">#000</color>
+
+    <color name="color_toolbar_title">#000</color>
     <!-- Tabs -->
 
     <color name="tab_article">#6078EA</color>
@@ -50,17 +59,6 @@
         <item name="user_profile">@color/tab_profile</item>
     </array>
 
-
-    <!-- Text Colors-->
-
-    <color name="colorSurface">#FFFFFF</color>
-
-    <color name="colorTextLastUpdated">#000</color>
-
-    <color name="colorTextDefault">#000</color>
-
-    <color name="color_toolbar_title">#000</color>
-    <color name="colorOnBackground">#ffffff</color>
 
     <!--Custom gradient Start & End colors -->
 

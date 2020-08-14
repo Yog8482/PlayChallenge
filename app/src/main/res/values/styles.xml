@@ -11,11 +11,21 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="cardBackgroundColor">@color/clouds</item>
+        <item name="materialCardViewStyle">@style/MaterialCardText</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+
+
+    <style name="MaterialCardText">
+        <item name="cardCornerRadius">6dp</item>
+        <item name="textColor">@color/primaryDarkColor</item>
+        <item name="cardElevation">12dp</item>
+        <item name="backgroundTint">@color/clouds</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />

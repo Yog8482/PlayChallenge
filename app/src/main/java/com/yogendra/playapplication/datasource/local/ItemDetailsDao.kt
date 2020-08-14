@@ -25,6 +25,6 @@ interface ItemDetailsDao{
     suspend fun insertAll(items: List<Itemdetail>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertItem(items: Itemdetail)
+     fun insertItem(items: Itemdetail)
 
 }

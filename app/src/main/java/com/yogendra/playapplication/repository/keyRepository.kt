@@ -31,7 +31,7 @@ class KeysRepository @Inject constructor(
                 val alltopStories = results//.getList()
                 alltopStories.isNotEmpty().let {
                     alltopStories.forEachIndexed { index, s ->
-                        keysDao.insertAll(listOf(Allkeys(index,key_value = "$s")))
+                        keysDao.insertAll(listOf(Allkeys(index,key_value = "$s", next_page = 1)))
                     }
                 }
                 alltopStories.isEmpty().let {

@@ -35,15 +35,16 @@ class HomeFragment : Fragment(), Injectable {
         binding = HomeFragmentListBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-        viewModel.loadData()
+        viewModel.articles
 
         binding.list.adapter = adapter
         subscribeUi(adapter)
 
 
         binding.swiperefresh.setOnRefreshListener {
-            viewModel.loadData()
+//            viewModel.loadData()
             binding.swiperefresh.isRefreshing = false
+
 
         }
         return binding.root
@@ -60,6 +61,7 @@ class HomeFragment : Fragment(), Injectable {
             adapter.submitList(result)
             binding.hasArticles = result.isNotEmpty()
         })
+
 
         viewModel.progressStatus.observe(viewLifecycleOwner, Observer { status ->
 

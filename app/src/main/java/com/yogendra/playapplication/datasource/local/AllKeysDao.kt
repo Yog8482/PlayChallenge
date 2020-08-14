@@ -17,6 +17,9 @@ interface AllKeysDao {
     @Query("SELECT * FROM allkeys LIMIT :pagesize OFFSET :startrowid")
     fun getNextBatchOfKeys(pagesize: Int, startrowid: String): List<Allkeys>
 
+    @Query("SELECT * FROM allkeys LIMIT 1 OFFSET :startrowid")
+    fun getNextTopstoryKey(startrowid: String): Allkeys
+
     @Query("SELECT next_page FROM allkeys")
     fun getNextPageStartkey(): Long?
 
@@ -28,5 +31,5 @@ interface AllKeysDao {
     suspend fun insertAll(items: List<Allkeys>)
 
     @Query("UPDATE allkeys SET next_page = :nextpage_startkey")//WHERE key_id = :rid
-    fun updateNextPageAllkeys(nextpage_startkey: String?): Int
+     fun updateNextPageAllkeys(nextpage_startkey: String?): Int
 }

@@ -116,7 +116,7 @@ class LoginFragment : Fragment(), Injectable {
                     ProgressStatus.COMPLTED.toString() -> {
                         MultilineSnackbar(
                             binding.root,
-                            "Top stories Downloaded"
+                            "Top stories load complete."
                         ).show()
                         navigateToDetails(binding.root)
 

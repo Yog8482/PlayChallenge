@@ -12,6 +12,7 @@ val DATABASE_NAME = "play-db"
 val MOCK_EMAIL = "test@worldofplay.in"
 val MOCK_PASSWORD = "Worldofplay@2020"
 val SHARED_PREFS_NAME = "com.play.application_preferences"
+var IS_INTERNET_AVAILABLE = false
 
 
 enum class ProgressStatus {

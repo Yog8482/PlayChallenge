@@ -11,5 +11,5 @@ data class Allkeys(
     @ColumnInfo(name = "key_id")
     val key_id: Int = 1,
     val key_value: String,
-    val next_page: Long? = 0
+    val next_page: Long?
 )

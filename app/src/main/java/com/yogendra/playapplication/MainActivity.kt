@@ -17,6 +17,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.standalone.cooeyhealthtinder.connectivity.base.ConnectivityProvider
 import com.yogendra.playapplication.databinding.MainActivityBinding
 import com.yogendra.playapplication.utilities.ThemeManager
 import dagger.android.AndroidInjector
@@ -25,10 +26,11 @@ import dagger.android.HasAndroidInjector
 import kotlinx.android.synthetic.main.toolbar_switchicon.view.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(),
+class MainActivity : AppCompatActivity(), ConnectivityProvider.ConnectivityStateListener,
     HasAndroidInjector {
 
     val spreferences by lazy { getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE) }
+    private val provider: ConnectivityProvider by lazy { ConnectivityProvider.createProvider(this) }
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -45,6 +47,7 @@ class MainActivity : AppCompatActivity(),
 
         val binding: MainActivityBinding =
             DataBindingUtil.setContentView(this, R.layout.main_activity)
+        IS_INTERNET_AVAILABLE = provider.getNetworkState().hasInternet()
 
 
         setSupportActionBar(binding.actMainToolbar)
@@ -122,46 +125,6 @@ class MainActivity : AppCompatActivity(),
 
     }
 
-
-/*
-    private fun applyTheme(selectedOption: String) {
-
-        when (selectedOption) {
-            getString(R.string.light_theme_value) -> {
-                AppCompatDelegate.setDefaultNightMode(
-                    AppCompatDelegate.MODE_NIGHT_NO
-                )
-
-                delegate.applyDayNight()
-            }
-
-
-            getString(R.string.dark_theme_value) -> {
-                AppCompatDelegate.setDefaultNightMode(
-                    AppCompatDelegate.MODE_NIGHT_YES
-                )
-                delegate.applyDayNight()
-
-            }
-
-            getString(R.string.auto_battery_value) -> {
-                AppCompatDelegate.setDefaultNightMode(
-                    AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY
-                )
-                delegate.applyDayNight()
-
-            }
-            getString(R.string.follow_system_value) -> {
-                AppCompatDelegate.setDefaultNightMode(
-                    AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-                )
-                delegate.applyDayNight()
-
-            }
-        }
-    }
-*/
-
     private fun init() {
         val themePreferenceKey = getString(R.string.preference_key_theme)
         val selectedOption = spreferences.getString(themePreferenceKey, "")
@@ -173,6 +136,14 @@ class MainActivity : AppCompatActivity(),
 
     fun setSwitch(selectedOption: String) {
         themeSwitch.isChecked = selectedOption == getString(R.string.dark_theme_value)
+    }
+
+    override fun onStateChange(state: ConnectivityProvider.NetworkState) {
+        IS_INTERNET_AVAILABLE = state.hasInternet()
+    }
+
+    private fun ConnectivityProvider.NetworkState.hasInternet(): Boolean {
+        return (this as? ConnectivityProvider.NetworkState.ConnectedState)?.hasInternet == true
     }
 
 }

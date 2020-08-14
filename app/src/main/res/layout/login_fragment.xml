@@ -8,11 +8,7 @@
         <variable
             name="logindetailsstate"
             type="com.yogendra.playapplication.ui.login.validation.LoginInputDataWithState" />
-
-        <!--        <variable-->
-        <!--            name="loginmodel"-->
-        <!--            type="com.yogendra.playapplication.ui.login.LoginViewModel" />-->
-    </data>
+ </data>
 
     <ScrollView
         android:layout_width="match_parent"

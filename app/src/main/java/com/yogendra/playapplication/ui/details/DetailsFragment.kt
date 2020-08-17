@@ -34,8 +34,6 @@ class DetailsFragment : Fragment(), Injectable {
         binding = DetailsFragmentBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-//        binding.progressbar.visibility=View.VISIBLE
-
 
         binding.detailsWebview.settings.javaScriptEnabled = true; // enable javascript
 

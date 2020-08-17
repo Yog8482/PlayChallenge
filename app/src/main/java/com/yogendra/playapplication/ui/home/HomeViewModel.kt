@@ -23,12 +23,12 @@ class HomeViewModel @Inject constructor(
         )
     }
 
-    val refresh_articles by lazy {
+    val refresh_articles =
         repository.observePagedSets(
             IS_INTERNET_AVAILABLE,
             ioCoroutineScope
         )
-    }
+
 
 
 //    fun loadData(): LiveData<PagedList<Itemdetail>> {

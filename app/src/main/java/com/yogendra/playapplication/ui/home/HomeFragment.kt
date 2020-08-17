@@ -42,8 +42,7 @@ class HomeFragment : Fragment(), Injectable {
 
 
         binding.swiperefresh.setOnRefreshListener {
-//            viewModel.loadData()
-            binding.swiperefresh.isRefreshing = false
+            viewModel.refresh_articles
 
 
         }
@@ -56,6 +55,15 @@ class HomeFragment : Fragment(), Injectable {
         binding.swiperefresh.isRefreshing = true
 
         viewModel.articles.observe(viewLifecycleOwner, Observer { result ->
+            binding.swiperefresh.isRefreshing = false
+            Log.i("HomeModel", "subscribeUi:$result")
+            adapter.submitList(result)
+            binding.hasArticles = result.isNotEmpty()
+        })
+
+
+
+        viewModel.refresh_articles.observe(viewLifecycleOwner, Observer { result ->
             binding.swiperefresh.isRefreshing = false
             Log.i("HomeModel", "subscribeUi:$result")
             adapter.submitList(result)

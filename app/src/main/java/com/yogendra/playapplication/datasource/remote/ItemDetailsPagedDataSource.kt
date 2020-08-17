@@ -62,6 +62,7 @@ class ItemDetailsPagedDataSource @Inject constructor(
 
     fun fetchData(pagesize: Int, callback: (List<Itemdetail>) -> Unit) {
         scope.launch(getJobErrorHandler()) {
+            progressLiveStatus.postValue("downloading stories details")
 
             progressLiveStatus.postValue(ProgressStatus.LOADING.toString())
 
@@ -88,10 +89,11 @@ class ItemDetailsPagedDataSource @Inject constructor(
                 callback(newItems)
                 Log.i("RequestDeferrred", "deferred response final list:$newItems")
                 progressLiveStatus.postValue(ProgressStatus.COMPLTED.toString())
+                progressLiveStatus.postValue("download complete")
 
             }
 
-            listofkeys.isEmpty().let {
+            if(listofkeys.isEmpty()) {
                 progressLiveStatus.postValue("No stories found to download details")
             }
 //            }.await()

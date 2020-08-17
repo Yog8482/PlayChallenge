@@ -13,9 +13,6 @@ class HomeViewModel @Inject constructor(
     @CoroutineScopeIO private val ioCoroutineScope: CoroutineScope
 ) : ViewModel() {
 
-//    val articles: LiveData<PagedList<Itemdetail>>
-//        get() = _articles
-
     val articles by lazy {
         repository.observePagedSets(
             IS_INTERNET_AVAILABLE,
@@ -28,15 +25,6 @@ class HomeViewModel @Inject constructor(
             IS_INTERNET_AVAILABLE,
             ioCoroutineScope
         )
-
-
-
-//    fun loadData(): LiveData<PagedList<Itemdetail>> {
-//        return repository.observePagedSets(
-//            IS_INTERNET_AVAILABLE,
-//            ioCoroutineScope
-//        )
-//    }
 
 
     val progressStatus by lazy { repository.getProgressStatus() }
